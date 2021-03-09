@@ -47,11 +47,11 @@ function listContacts() {
     });
   }
   
-  function addContact(name, email, phone) {
+  function addContact(name, email, phone, id) {
         fs.readFile(contactsPath, {encoding: 'utf-8'},(err, data) => {
             try {
                 const parsedData = JSON.parse(data);
-                const newContact = {name, email, phone};
+                const newContact = {name, id, email, phone};
                 parsedData.push(newContact);
                 fs.writeFile(contactsPath, JSON.stringify(parsedData), () => {
                     console.log('New contact added');
