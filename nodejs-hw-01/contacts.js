@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-
+// const {v4:uuid} = require('uuid');
+const uniqid = require('uniqid');
 
 const contactsPath = path.join('db', 'contacts.json');
 
@@ -34,8 +35,7 @@ function listContacts() {
     fs.readFile(contactsPath, { encoding: 'utf-8' }, (err, data) => {
       try {
         const parsedData = JSON.parse(data);
-        const removeContactById = parsedData.filter(item => item.id !== contactId);
-  
+        const removeContactById = parsedData.filter(item => item.id !== contactId);  
         console.table(removeContactById);
         fs.writeFile(contactsPath, JSON.stringify(removeContactById), () => {
           console.log('Contact was removed');
@@ -51,6 +51,7 @@ function listContacts() {
         fs.readFile(contactsPath, {encoding: 'utf-8'},(err, data) => {
             try {
                 const parsedData = JSON.parse(data);
+                const  id = uniqid();
                 const newContact = {name, id, email, phone};
                 parsedData.push(newContact);
                 fs.writeFile(contactsPath, JSON.stringify(parsedData), () => {

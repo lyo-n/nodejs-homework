@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "commander": "^7.0.0",
+    "uniqid": "^5.3.0",
+    "uuid": "^8.3.2",
     "yargs": "^16.2.0"
   }
 }
-
